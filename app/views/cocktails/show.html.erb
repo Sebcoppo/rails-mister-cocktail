@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>
+  <strong> <%= @cocktail.name %> </strong>
+
+
+</h1>
+
+<div class="container my-5">
+  <h2> Ingredients List </h2>
+
+  <div class="row">
+    <div class="col">
+      <div class="cards">
+    <% @cocktail.doses.each do |dose| %>
+          <div class="card-category">
+            <%= dose.description %> <%= dose.ingredient.name %>
+            <%= link_to dose_path(dose), method: :delete, data: { confirm: 'Are you sure?' }, class: 'card-remove-link' do %>
+                <i class="fas fa-trash"></i>
+            <% end %>
+          </div>
+        </div>
+    </div>
+  </div>
+        <% end %>
+  </div>
+   <%= link_to "+ New Dose", new_cocktail_dose_path(@cocktail) %>
+</div>
+
+<%= link_to 'Back', cocktails_path %>
+
